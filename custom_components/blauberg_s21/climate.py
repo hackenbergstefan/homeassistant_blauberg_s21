@@ -1,4 +1,5 @@
 """Support for climate device."""
+
 from __future__ import annotations
 
 from typing import Any
@@ -97,7 +98,7 @@ class BlS21ClimateEntity(ClimateEntity):
     @property
     def current_temperature(self) -> float | None:
         if self._client.device:
-            return self._client.device.current_temperature
+            return self._client.device.current_supply_temperature
 
     @property
     def target_temperature(self) -> float | None:
@@ -156,7 +157,10 @@ class BlS21ClimateEntity(ClimateEntity):
     def fan_modes(self) -> list[str] | None:
         if self._client.device:
             if self._client.device.max_fan_level == 3:
-                return [S21_TO_HA_FAN_MODE.get(m, str(m)) for m in self._client.device.fan_modes]
+                return [
+                    S21_TO_HA_FAN_MODE.get(m, str(m))
+                    for m in self._client.device.fan_modes
+                ]
             return [str(m) for m in self._client.device.fan_modes]
 
     @property

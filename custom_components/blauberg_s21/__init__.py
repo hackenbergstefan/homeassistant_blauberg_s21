@@ -1,4 +1,5 @@
 """The Blauberg S21 integration."""
+
 from __future__ import annotations
 
 from homeassistant.config_entries import ConfigEntry
@@ -9,7 +10,7 @@ from pybls21.client import S21Client
 
 from .const import DOMAIN
 
-PLATFORMS: list[Platform] = [Platform.CLIMATE]
+PLATFORMS: list[Platform] = [Platform.CLIMATE, Platform.SENSOR]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
